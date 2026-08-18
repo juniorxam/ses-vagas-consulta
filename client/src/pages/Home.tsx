@@ -55,7 +55,9 @@ type Vaga = {
 };
 
 const vagas = vagasData as Vaga[];
-const sourcePdf = "/manus-storage/edital-consolidado-13.08_33996284.pdf";
+const manusAssetOrigin = import.meta.env.VITE_MANUS_ASSET_ORIGIN ?? "";
+const storageAsset = (arquivo: string) => `${manusAssetOrigin}/manus-storage/${arquivo}`;
+const sourcePdf = storageAsset("edital-consolidado-13.08_33996284.pdf");
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("pt-BR").format(value);
@@ -276,7 +278,7 @@ export default function Home() {
       <header className="border-b border-[#d9a63a]/20 bg-[#06293a] text-[#fffdf5]">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-3 sm:px-8 lg:px-12">
           <a href="#consulta" className="flex items-center gap-3" aria-label="Ir para a consulta de vagas">
-            <img src="/manus-storage/ses-rota-logo_1c9a796d.png" alt="Símbolo Rota SES" className="h-14 w-14 rounded-2xl object-contain sm:h-16 sm:w-16" />
+            <img src={storageAsset("ses-rota-logo_1c9a796d.png")} alt="Símbolo Rota SES" className="h-14 w-14 rounded-2xl object-contain sm:h-16 sm:w-16" />
             <span className="leading-none">
               <strong className="display-font block text-xl leading-none tracking-tight text-[#fffdf5]">ROTA SES <span className="font-sans text-xs font-bold tracking-[0.2em] text-[#d9a63a]">2026</span></strong>
               <span className="mt-1.5 block text-[0.66rem] font-semibold tracking-[0.12em] text-[#d7e8e8]/75 uppercase">guia territorial de vagas</span>
@@ -289,7 +291,7 @@ export default function Home() {
       <main>
         <section className="relative isolate overflow-hidden bg-[#06293a] text-[#fffdf5]">
           <img
-            src="/manus-storage/ses-hero-cartografia-clinica_1453045e.png"
+            src={storageAsset("ses-hero-cartografia-clinica_1453045e.png")}
             alt="Ilustração abstrata de trajetos e territórios de saúde"
             className="absolute inset-y-0 right-0 -z-10 h-full w-full object-cover object-right opacity-80"
           />
@@ -327,7 +329,7 @@ export default function Home() {
 
           <div className="grid items-start gap-7 lg:grid-cols-[318px_minmax(0,1fr)]">
             <aside className="relative overflow-hidden rounded-[1.5rem] border border-[#d9a63a]/25 bg-[#06293a] p-5 text-white shadow-[0_22px_50px_-32px_rgba(6,41,58,0.9)] lg:sticky lg:top-5">
-              <img src="/manus-storage/ses-territorios-detalhe_ac29117f.png" alt="Detalhe cartográfico abstrato" className="pointer-events-none absolute inset-y-0 right-0 h-full w-1/2 object-cover opacity-25" />
+              <img src={storageAsset("ses-territorios-detalhe_ac29117f.png")} alt="Detalhe cartográfico abstrato" className="pointer-events-none absolute inset-y-0 right-0 h-full w-1/2 object-cover opacity-25" />
               <div className="relative">
                 <div className="mb-7 flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#d9a63a] text-[#06293a]"><SlidersHorizontal className="h-5 w-5" /></span>
@@ -396,7 +398,7 @@ export default function Home() {
                   <p className="mt-1 text-sm text-[#5f727a]">perfis e especialidades</p>
                 </div>
                 <div className="relative overflow-hidden rounded-2xl bg-[#0b364a] p-5 text-white shadow-[0_16px_35px_-30px_rgba(6,41,58,0.85)]">
-                  <img src="/manus-storage/ses-rotas-microatlas_6485de62.png" alt="Mini atlas abstrato" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 object-cover opacity-30" />
+                  <img src={storageAsset("ses-rotas-microatlas_6485de62.png")} alt="Mini atlas abstrato" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 object-cover opacity-30" />
                   <div className="relative"><div className="flex items-center justify-between"><span className="micro-label text-[#d9a63a]">Localidades · nó 03</span><MapPin className="h-4 w-4 text-[#d9a63a]" /></div>
                     <p className="mt-4 text-4xl font-bold tracking-tight">{formatNumber(resumo.municipios)}</p>
                     <p className="mt-1 text-sm text-[#c7dcdd]">municípios no resultado</p></div>
@@ -406,7 +408,7 @@ export default function Home() {
               <div className="my-6 overflow-hidden rounded-2xl border border-[#d9a63a]/25 bg-[#0b364a] text-white shadow-[0_18px_36px_-30px_rgba(6,41,58,0.95)]">
                 <div className="flex flex-wrap items-center gap-3 border-b border-white/10 px-5 py-3"><span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.13em] text-[#d9a63a]"><MapPin className="h-4 w-4" /> Percurso territorial</span><span className="h-px min-w-8 flex-1 bg-[#d9a63a]/35" /><span className="text-xs text-[#c7dcdd]">Regiões atravessadas pela busca</span></div>
                 <div className="flex gap-3 overflow-x-auto px-4 py-4">
-                  {Object.entries(resultadosAgrupados).map(([nome, grupo], index) => <div key={nome} className="min-w-[188px] shrink-0 rounded-xl border border-white/10 bg-white/[0.06] px-3 py-3 text-xs text-white"><div className="flex items-center justify-between gap-3"><span className="grid h-7 w-7 place-items-center rounded-full bg-[#d9a63a] text-[10px] font-bold text-[#06293a]">{String(index + 1).padStart(2, "0")}</span><img src="/manus-storage/ses-rota-logo_1c9a796d.png" alt="" className="h-5 w-5 object-contain opacity-90" /></div><p className="mt-3 font-bold leading-4">{nome}</p><p className="mt-1 font-sans text-xl font-extrabold tracking-tight text-[#d9a63a]">{formatNumber(grupo.reduce((soma, vaga) => soma + vaga.total, 0))}<span className="ml-1 text-[10px] font-bold tracking-[0.12em] uppercase text-[#c7dcdd]">vagas</span></p></div>)}
+                  {Object.entries(resultadosAgrupados).map(([nome, grupo], index) => <div key={nome} className="min-w-[188px] shrink-0 rounded-xl border border-white/10 bg-white/[0.06] px-3 py-3 text-xs text-white"><div className="flex items-center justify-between gap-3"><span className="grid h-7 w-7 place-items-center rounded-full bg-[#d9a63a] text-[10px] font-bold text-[#06293a]">{String(index + 1).padStart(2, "0")}</span><img src={storageAsset("ses-rota-logo_1c9a796d.png")} alt="" className="h-5 w-5 object-contain opacity-90" /></div><p className="mt-3 font-bold leading-4">{nome}</p><p className="mt-1 font-sans text-xl font-extrabold tracking-tight text-[#d9a63a]">{formatNumber(grupo.reduce((soma, vaga) => soma + vaga.total, 0))}<span className="ml-1 text-[10px] font-bold tracking-[0.12em] uppercase text-[#c7dcdd]">vagas</span></p></div>)}
                 </div>
               </div>
 
@@ -434,7 +436,7 @@ export default function Home() {
                     </TableHeader>
                     <TableBody>
                       {Object.entries(resultadosAgrupados).map(([nome, grupo], index) => <Fragment key={nome}>
-                        <TableRow className="border-y border-[#d9a63a]/35 bg-[#fff8e2] hover:bg-[#fff8e2]"><TableCell colSpan={5} className="px-5 py-3"><div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full bg-[#d9a63a] text-xs font-bold text-[#06293a]">{String(index + 1).padStart(2, "0")}</span><img src="/manus-storage/ses-rota-logo_1c9a796d.png" alt="Símbolo Rota SES" className="h-6 w-6 object-contain" /><div><span className="micro-label text-[#8b5e0b]">Parada territorial · camada {String(index + 1).padStart(2, "0")}</span><span className="display-font mt-0.5 block text-lg font-bold text-[#0b364a]">{nome}</span></div><span className="ml-auto hidden text-xs font-semibold text-[#6e591e] sm:block">{new Set(grupo.map((vaga) => vaga.municipio)).size} municípios</span><span className="rounded-full bg-[#d9a63a] px-3 py-1 text-sm font-extrabold text-[#06293a]">{formatNumber(grupo.reduce((soma, vaga) => soma + vaga.total, 0))} vagas</span><span className="h-px flex-1 bg-[#d9a63a]/40" /></div></TableCell></TableRow>
+                        <TableRow className="border-y border-[#d9a63a]/35 bg-[#fff8e2] hover:bg-[#fff8e2]"><TableCell colSpan={5} className="px-5 py-3"><div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full bg-[#d9a63a] text-xs font-bold text-[#06293a]">{String(index + 1).padStart(2, "0")}</span><img src={storageAsset("ses-rota-logo_1c9a796d.png")} alt="Símbolo Rota SES" className="h-6 w-6 object-contain" /><div><span className="micro-label text-[#8b5e0b]">Parada territorial · camada {String(index + 1).padStart(2, "0")}</span><span className="display-font mt-0.5 block text-lg font-bold text-[#0b364a]">{nome}</span></div><span className="ml-auto hidden text-xs font-semibold text-[#6e591e] sm:block">{new Set(grupo.map((vaga) => vaga.municipio)).size} municípios</span><span className="rounded-full bg-[#d9a63a] px-3 py-1 text-sm font-extrabold text-[#06293a]">{formatNumber(grupo.reduce((soma, vaga) => soma + vaga.total, 0))} vagas</span><span className="h-px flex-1 bg-[#d9a63a]/40" /></div></TableCell></TableRow>
                         {grupo.map((vaga) => <TableRow key={vaga.id} className="border-[#0b364a]/8 hover:bg-[#fff9e8]">
                           <TableCell className="px-5 py-4 font-semibold text-[#0b364a] whitespace-normal"><span className="max-w-[270px] block leading-5">{vaga.cargo}</span></TableCell>
                           <TableCell className="px-4 py-4 text-[#415a64]"><span className="inline-flex items-center gap-2"><MapPin className="h-3.5 w-3.5 text-[#d9a63a]" />{vaga.municipio}</span></TableCell>
@@ -496,7 +498,7 @@ export default function Home() {
         </section>
 
         <section className="relative overflow-hidden bg-[#0b364a] px-5 py-11 text-white sm:px-8 lg:px-12">
-          <img src="/manus-storage/ses-pontos-de-cuidado_a06fb47c.png" alt="Conexões territoriais abstratas" className="absolute inset-y-0 right-0 h-full w-full object-cover object-right opacity-35" />
+          <img src={storageAsset("ses-pontos-de-cuidado_a06fb47c.png")} alt="Conexões territoriais abstratas" className="absolute inset-y-0 right-0 h-full w-full object-cover object-right opacity-35" />
           <div className="relative mx-auto flex max-w-[1440px] flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div className="max-w-2xl"><p className="micro-label text-[#d9a63a]">Critério de transparência</p><h2 className="display-font mt-2 text-2xl sm:text-3xl">Dados estruturados a partir do quadro de vagas do edital enviado.</h2></div>
             <a href={sourcePdf} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15" download>Arquivo de origem <ArrowDownToLine className="h-4 w-4" /></a>
