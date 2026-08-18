@@ -86,3 +86,5 @@ O símbolo combina um marcador geográfico e uma cruz clínica formada por espa�
 - A linguagem cartográfica deve estar presente em cada seção principal: linhas de rota, coordenadas, nós e marcadores dourados são recursos de orientação, não decoração isolada.
 - Os resultados precisam ser lidos primeiro como guia territorial e depois como planilha: região, município, cargo e quantidade de vagas recebem hierarquia visível e agrupamento.
 - O **Dourado Rota #D9A63A** fica reservado para ação principal, totais de vagas e marcadores de localização; a decoração secundária usa azul petróleo, marfim e verde-água.
+- A hierarquia dos resultados segue **região → município → cargo → vagas**, com o marcador dourado sinalizando território e números em DM Sans pesado priorizando comparação.
+- Toda seção principal inclui pelo menos um recurso funcional de orientação — rota, nó, coordenada, marcador ou barra territorial — e o símbolo da marca reaparece discretamente nas entradas de território.

@@ -11,3 +11,11 @@ O hero, os filtros e os indicadores passam a uma coluna única. A tabela mantém
 ## Verificação técnica
 
 O projeto passou na checagem de tipos e na compilação de produção. A base contém 386 registros, 15 municípios, 8 regiões de saúde e 5.124 vagas totais, conforme a extração consolidada do Anexo II.
+
+## Atualização: comparação e PDF
+
+A página passou a apresentar o comparador por municípios ou regiões de saúde, mantendo os filtros ativos como base para os totais. A visualização confirmou a sequência territorial, os totais de cada região e o botão de exportação em PDF na área de resultados. O acionamento do botão foi executado na consulta completa para validar o fluxo de geração do relatório.
+
+O histórico de downloads do navegador confirmou a criação do arquivo `relatorio-vagas-ses-2026.pdf` pela aplicação.
+
+Os controles do comparador foram testados nas duas visões. A leitura por regiões de saúde destacou Capim Dourado com 1.654 vagas, e a alternância de volta para municípios destacou Palmas com 1.351 vagas, confirmando a atualização dinâmica do gráfico e do ranking.
