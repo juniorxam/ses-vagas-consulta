@@ -1,3 +1,4 @@
+/* Cartografia Clínica: estrutura leve para uma consulta territorial de vagas, com contraste institucional e navegação objetiva. */
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";

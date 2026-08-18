@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Cartografia Clínica: azul petróleo, dourado Rota e superfícies em marfim organizam o atlas de vagas. */
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -43,39 +45,39 @@
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.27 0.055 231);
+  --primary-foreground: oklch(0.985 0.007 89);
+  --sidebar-primary: oklch(0.27 0.055 231);
+  --sidebar-primary-foreground: oklch(0.985 0.007 89);
+  --chart-1: oklch(0.72 0.13 80);
+  --chart-2: oklch(0.68 0.095 207);
+  --chart-3: oklch(0.52 0.07 231);
+  --chart-4: oklch(0.45 0.08 165);
+  --chart-5: oklch(0.38 0.05 263);
+  --radius: 0.9rem;
+  --background: oklch(0.978 0.012 87);
+  --foreground: oklch(0.255 0.026 231);
+  --card: oklch(0.998 0.003 88);
+  --card-foreground: oklch(0.255 0.026 231);
+  --popover: oklch(1 0.002 88);
+  --popover-foreground: oklch(0.255 0.026 231);
+  --secondary: oklch(0.95 0.018 88);
+  --secondary-foreground: oklch(0.34 0.03 231);
+  --muted: oklch(0.945 0.012 87);
+  --muted-foreground: oklch(0.47 0.03 231);
+  --accent: oklch(0.92 0.035 185);
+  --accent-foreground: oklch(0.27 0.055 231);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
+  --border: oklch(0.87 0.02 87);
+  --input: oklch(0.87 0.02 87);
+  --ring: oklch(0.7 0.13 80);
+  --sidebar: oklch(0.965 0.012 87);
+  --sidebar-foreground: oklch(0.255 0.026 231);
+  --sidebar-accent: oklch(0.92 0.035 185);
+  --sidebar-accent-foreground: oklch(0.27 0.055 231);
+  --sidebar-border: oklch(0.87 0.02 87);
+  --sidebar-ring: oklch(0.7 0.13 80);
 }
 
 .dark {
@@ -119,6 +121,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "DM Sans", sans-serif;
+    background-image: radial-gradient(circle at 12% 18%, oklch(0.94 0.028 185 / 35%), transparent 26rem), linear-gradient(180deg, oklch(0.98 0.012 87), oklch(0.965 0.012 87));
+    min-width: 320px;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -158,6 +163,26 @@
   .flex {
     min-height: 0;
     min-width: 0;
+  }
+
+  .display-font {
+    font-family: "Fraunces", Georgia, serif;
+  }
+
+  .atlas-grid {
+    background-image: linear-gradient(oklch(0.48 0.05 231 / 10%) 1px, transparent 1px), linear-gradient(90deg, oklch(0.48 0.05 231 / 10%) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .micro-label {
+    font-size: 0.69rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .route-line {
+    background: linear-gradient(90deg, transparent, oklch(0.72 0.13 80 / 75%), transparent);
   }
 
   @media (min-width: 640px) {
