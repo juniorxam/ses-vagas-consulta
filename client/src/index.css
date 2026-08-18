@@ -1,6 +1,5 @@
 @import "tailwindcss";
-/* Cartografia Clínica: azul petróleo, dourado Rota e superfícies em marfim organizam o atlas de vagas. */
-@import "tailwindcss";
+/* Identidade institucional: azul petróleo, dourado e superfícies em marfim priorizam a leitura do edital. */
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
