@@ -19,3 +19,7 @@ A página passou a apresentar o comparador por municípios ou regiões de saúde
 O histórico de downloads do navegador confirmou a criação do arquivo `relatorio-vagas-ses-2026.pdf` pela aplicação.
 
 Os controles do comparador foram testados nas duas visões. A leitura por regiões de saúde destacou Capim Dourado com 1.654 vagas, e a alternância de volta para municípios destacou Palmas com 1.351 vagas, confirmando a atualização dinâmica do gráfico e do ranking.
+
+## Correção: rótulos e nomes territoriais
+
+A visualização completa por município confirmou a exibição dos 15 municípios, inclusive os menores quantitativos, sem corte no eixo vertical. Cada barra passou a apresentar o total de vagas como rótulo à direita; por exemplo, Palmas aparece com 1.351, Porto Nacional com 571 e Alvorada com 94 vagas.

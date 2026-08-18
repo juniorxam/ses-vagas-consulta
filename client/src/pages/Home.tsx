@@ -34,6 +34,7 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
+  LabelList,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -118,6 +119,9 @@ export default function Home() {
       .map(([nome, dados]) => ({ nome, vagas: dados.vagas, cargos: dados.cargos.size, municipios: dados.municipios.size }))
       .sort((a, b) => b.vagas - a.vagas || a.nome.localeCompare(b.nome, "pt-BR"));
   }, [comparacaoPor, resultados]);
+
+  const alturaGraficoComparacao = Math.max(360, distribuicaoComparativa.length * 46 + 44);
+  const larguraEixoTerritorial = comparacaoPor === "municipio" ? 174 : 226;
 
   const limparFiltros = () => {
     setCargoQuery("");
@@ -474,8 +478,8 @@ export default function Home() {
             <div className="mt-8 grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
               <div className="rounded-[1.5rem] border border-[#0b364a]/10 bg-[#fffdf8] p-5 shadow-[0_20px_45px_-35px_rgba(6,41,58,0.8)] sm:p-7">
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-3"><div><p className="micro-label text-[#2b7f80]">Mapa de intensidade</p><h3 className="display-font mt-1 text-2xl text-[#0b364a]">Total de vagas por {comparacaoPor === "municipio" ? "município" : "região"}</h3></div><span className="rounded-full bg-[#fff5d9] px-3 py-1.5 text-xs font-bold text-[#8b5e0b]">{formatNumber(resumo.vagas)} vagas no recorte</span></div>
-                <div className="h-[360px] min-w-0" aria-label="Gráfico de barras com a distribuição de vagas">
-                  {distribuicaoComparativa.length ? <ResponsiveContainer width="100%" height="100%"><BarChart data={distribuicaoComparativa} layout="vertical" margin={{ top: 6, right: 26, left: 12, bottom: 6 }}><CartesianGrid horizontal={false} stroke="#d9e7e3" strokeDasharray="3 3" /><XAxis type="number" tick={{ fill: "#5f727a", fontSize: 11 }} axisLine={false} tickLine={false} /><YAxis type="category" dataKey="nome" width={comparacaoPor === "municipio" ? 125 : 172} tick={{ fill: "#0b364a", fontSize: 11, fontWeight: 700 }} axisLine={false} tickLine={false} /><Tooltip cursor={{ fill: "#e8f4f1" }} formatter={(value: number) => [`${formatNumber(value)} vagas`, "Total"]} contentStyle={{ borderRadius: 12, border: "1px solid #d9a63a55", boxShadow: "0 12px 30px -18px rgba(6,41,58,.55)" }} /><Bar dataKey="vagas" radius={[0, 8, 8, 0]} maxBarSize={28}>{distribuicaoComparativa.map((item, index) => <Cell key={item.nome} fill={index === 0 ? "#d9a63a" : "#0b364a"} />)}</Bar></BarChart></ResponsiveContainer> : <div className="grid h-full place-items-center rounded-xl border border-dashed border-[#0b364a]/20 text-sm text-[#506570]">Ajuste os filtros para comparar territórios.</div>}
+                <div className="min-w-0" style={{ height: alturaGraficoComparacao }} aria-label="Gráfico de barras com a distribuição de vagas">
+                  {distribuicaoComparativa.length ? <ResponsiveContainer width="100%" height="100%"><BarChart data={distribuicaoComparativa} layout="vertical" margin={{ top: 8, right: 74, left: 12, bottom: 8 }} barCategoryGap="18%"><CartesianGrid horizontal={false} stroke="#d9e7e3" strokeDasharray="3 3" /><XAxis type="number" tick={{ fill: "#5f727a", fontSize: 11 }} axisLine={false} tickLine={false} /><YAxis type="category" dataKey="nome" width={larguraEixoTerritorial} tick={{ fill: "#0b364a", fontSize: 10.5, fontWeight: 700 }} axisLine={false} tickLine={false} interval={0} /><Tooltip cursor={{ fill: "#e8f4f1" }} formatter={(value: number) => [`${formatNumber(value)} vagas`, "Total"]} contentStyle={{ borderRadius: 12, border: "1px solid #d9a63a55", boxShadow: "0 12px 30px -18px rgba(6,41,58,.55)" }} /><Bar dataKey="vagas" radius={[0, 8, 8, 0]} maxBarSize={28}><LabelList dataKey="vagas" position="right" formatter={(valor: number) => formatNumber(valor)} style={{ fill: "#0b364a", fontSize: 11, fontWeight: 800 }} />{distribuicaoComparativa.map((item, index) => <Cell key={item.nome} fill={index === 0 ? "#d9a63a" : "#0b364a"} />)}</Bar></BarChart></ResponsiveContainer> : <div className="grid h-full place-items-center rounded-xl border border-dashed border-[#0b364a]/20 text-sm text-[#506570]">Ajuste os filtros para comparar territórios.</div>}
                 </div>
               </div>
 
